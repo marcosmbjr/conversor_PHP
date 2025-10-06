@@ -19,6 +19,11 @@ function mostrarMensagem($mensagem)
     echo "<p>" . $mensagem . "</p>";
 }
 
+function converterParaDolar($valor) {
+    $cotacao_dolar = 5.30;
+    return number_format($valor / $cotacao_dolar, 2, ',', '.');
+}
+
 
 $valor = filter_input(INPUT_POST, "valor", FILTER_VALIDATE_FLOAT);
 $moeda = filter_input(INPUT_POST, "moeda", FILTER_SANITIZE_STRING);
@@ -31,7 +36,7 @@ if (!validarEntradas($valor, $moeda)) {
     $cotacao_libra = 6.50;
 
     if ($moeda == "dolar") {
-        $resultado = number_format($valor / $cotacao_dolar, 2, ',', '.');
+        $resultado = converterParaDolar($valor);
         $mensagem = "Valor em Dólar: US$ " . $resultado;
     } elseif ($moeda == "euro") {
         $resultado = number_format($valor / $cotacao_euro, 2, ',', '.');
