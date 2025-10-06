@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversão de Moedas</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Conversor de Moedas</h1>
+        <form method="POST" action="./pages/conversao.php">
+            <label for="valor">Informe o valor em Real (R$):</label>
+            <input type="number" id="valor" name="valor" required placeholder="Digite o valor em R$">
+            
+            <label for="moeda">Escolha a moeda para conversão:</label>
+            <select id="moeda" name="moeda" required>
+                <option value="dolar">Dólar</option>
+                <option value="euro">Euro</option>
+                <option value="libra">Libra Esterlina</option>
+            </select>
+            
+            <button type="submit">Converter</button>
+        </form>
+    </div>
+</body>
+</html>
