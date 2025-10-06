@@ -2,15 +2,29 @@
 $mensagem = "";
 $resultado = "";
 
+function validarEntradas($valor, $moeda) {
+    if (!isset($valor) || !is_numeric($valor) || $valor <= 0) {
+        return false;
+    }
+
+    
+    if ($moeda != "dolar" && $moeda != "euro" && $moeda != "libra") {
+        return false; 
+    }
+
+    return true; 
+}
+
 $valor = filter_input(INPUT_POST, "valor", FILTER_VALIDATE_FLOAT);
 $moeda = filter_input(INPUT_POST, "moeda", FILTER_SANITIZE_STRING);
 
-if (!isset($valor) || !is_numeric($valor) || $valor <= 0) {
-    $mensagem = "Por favor, insira um valor válido (maior que 0).";
+if (!validarEntradas($valor, $moeda)) {
+    $mensagem = "Por favor, insira um valor válido (maior que 0) e uma moeda válida.";
 } else {
     $cotacao_dolar = 5.30;
     $cotacao_euro = 6.00;
     $cotacao_libra = 6.50;
+    
     if ($moeda == "dolar") {
         $resultado = number_format($valor / $cotacao_dolar, 2, ',', '.');
         $mensagem = "Valor em Dólar: US$ " . $resultado;
