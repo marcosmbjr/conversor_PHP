@@ -24,6 +24,11 @@ function converterParaDolar($valor) {
     return number_format($valor / $cotacao_dolar, 2, ',', '.');
 }
 
+function converterParaEuro($valor) {
+    $cotacao_dolar = 6.00;
+    return number_format($valor / $cotacao_dolar, 2, ',', '.');
+}
+
 
 $valor = filter_input(INPUT_POST, "valor", FILTER_VALIDATE_FLOAT);
 $moeda = filter_input(INPUT_POST, "moeda", FILTER_SANITIZE_STRING);
@@ -39,8 +44,8 @@ if (!validarEntradas($valor, $moeda)) {
         $resultado = converterParaDolar($valor);
         $mensagem = "Valor em Dólar: US$ " . $resultado;
     } elseif ($moeda == "euro") {
-        $resultado = number_format($valor / $cotacao_euro, 2, ',', '.');
-        $mensagem = "Valor em Euro: € " . $resultado;
+        $resultado = converterParaEuro($valor);
+        $mensagem = "Valor em Dólar: US$ " . $resultado;;
     } elseif ($moeda == "libra") {
         $resultado = number_format($valor / $cotacao_libra, 2, ',', '.');
         $mensagem = "Valor em Libra Esterlina: £ " . $resultado;
